@@ -99,6 +99,7 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
                 return configuration.getViewRendererConfiguration();
             }
         });
+        
     }
 
     @Override

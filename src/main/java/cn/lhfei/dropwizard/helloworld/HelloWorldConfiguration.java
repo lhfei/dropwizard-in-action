@@ -39,6 +39,26 @@ import io.dropwizard.db.DataSourceFactory;
  * @since Feb 18, 2017
  */
 public class HelloWorldConfiguration extends Configuration {
+	@Valid
+    @NotNull
+    @JsonProperty
+    private String name;
+
+    @Valid
+    @NotNull
+    @JsonProperty
+    private Integer port;
+
+    @Valid
+    @NotNull
+    @JsonProperty
+    private String vipAddress;
+
+    @Valid
+    @NotNull
+    @JsonProperty
+    private String defaultServiceUrl;
+    
     @NotEmpty
     private String template;
 
@@ -51,6 +71,18 @@ public class HelloWorldConfiguration extends Configuration {
 
     @NotNull
     private Map<String, Map<String, String>> viewRendererConfiguration = Collections.emptyMap();
+    
+    
+    /*@Override
+    public EurekaClientConfiguration getEureka() {
+        EurekaClientConfiguration configuration = new EurekaClientConfiguration();
+        configuration.setName(name);
+        configuration.setPort(port);
+        configuration.setVipAddress(vipAddress);
+        configuration.setDefaultServiceUrl(defaultServiceUrl);
+
+        return configuration;
+    }*/
 
     @JsonProperty
     public String getTemplate() {

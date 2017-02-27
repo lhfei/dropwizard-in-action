@@ -23,7 +23,9 @@ target/
 *.diff
 *.patch
 *.tmp
+tmp/
 
 # system ignore
 .DS_Store
 Thumbs.db
+/.gradle/

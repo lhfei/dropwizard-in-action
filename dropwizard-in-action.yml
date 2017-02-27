@@ -2,6 +2,11 @@ template: Hello, %s!
 
 defaultName: ${DW_DEFAULT_NAME:-Hefei Li}
 
+name: helloworld
+port: 20010
+vipAddress: helloworld
+defaultServiceUrl: http://192.168.177.79:8080/eureka/v2/
+
 # Database settings.
 database:
 

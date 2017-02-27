@@ -207,6 +207,7 @@
     <java.version>1.8</java.version>
     <maven.site.skip>true</maven.site.skip>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <eureka.version>1.6.1</eureka.version>
     <maven.deploy.skip>true</maven.deploy.skip>
   </properties>
 </project>
