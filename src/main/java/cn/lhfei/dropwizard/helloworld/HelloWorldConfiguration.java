@@ -1,17 +1,15 @@
 /*
  * Copyright 2010-2011 the original author or authors.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
  */
 
 package cn.lhfei.dropwizard.helloworld;
@@ -39,96 +37,95 @@ import io.dropwizard.db.DataSourceFactory;
  * @since Feb 18, 2017
  */
 public class HelloWorldConfiguration extends Configuration {
-	@Valid
-    @NotNull
-    @JsonProperty
-    private String name;
+  @Valid
+  @NotNull
+  @JsonProperty
+  private String name;
 
-    @Valid
-    @NotNull
-    @JsonProperty
-    private Integer port;
+  @Valid
+  @NotNull
+  @JsonProperty
+  private Integer port;
 
-    @Valid
-    @NotNull
-    @JsonProperty
-    private String vipAddress;
+  @Valid
+  @NotNull
+  @JsonProperty
+  private String vipAddress;
 
-    @Valid
-    @NotNull
-    @JsonProperty
-    private String defaultServiceUrl;
-    
-    @NotEmpty
-    private String template;
+  @Valid
+  @NotNull
+  @JsonProperty
+  private String defaultServiceUrl;
 
-    @NotEmpty
-    private String defaultName = "Hefei Li";
+  @NotEmpty
+  private String template;
 
-    @Valid
-    @NotNull
-    private DataSourceFactory database = new DataSourceFactory();
+  @NotEmpty
+  private String defaultName = "Hefei Li";
 
-    @NotNull
-    private Map<String, Map<String, String>> viewRendererConfiguration = Collections.emptyMap();
-    
-    
-    /*@Override
-    public EurekaClientConfiguration getEureka() {
-        EurekaClientConfiguration configuration = new EurekaClientConfiguration();
-        configuration.setName(name);
-        configuration.setPort(port);
-        configuration.setVipAddress(vipAddress);
-        configuration.setDefaultServiceUrl(defaultServiceUrl);
+  @Valid
+  @NotNull
+  private DataSourceFactory database = new DataSourceFactory();
 
-        return configuration;
-    }*/
+  @NotNull
+  private Map<String, Map<String, String>> viewRendererConfiguration = Collections.emptyMap();
 
-    @JsonProperty
-    public String getTemplate() {
-        return template;
+
+  /*
+   * @Override public EurekaClientConfiguration getEureka() { EurekaClientConfiguration
+   * configuration = new EurekaClientConfiguration(); configuration.setName(name);
+   * configuration.setPort(port); configuration.setVipAddress(vipAddress);
+   * configuration.setDefaultServiceUrl(defaultServiceUrl);
+   * 
+   * return configuration; }
+   */
+
+  @JsonProperty
+  public String getTemplate() {
+    return template;
+  }
+
+  @JsonProperty
+  public void setTemplate(String template) {
+    this.template = template;
+  }
+
+  @JsonProperty
+  public String getDefaultName() {
+    return defaultName;
+  }
+
+  @JsonProperty
+  public void setDefaultName(String defaultName) {
+    this.defaultName = defaultName;
+  }
+
+  public Template buildTemplate() {
+    return new Template(template, defaultName);
+  }
+
+  @JsonProperty("database")
+  public DataSourceFactory getDataSourceFactory() {
+    return database;
+  }
+
+  @JsonProperty("database")
+  public void setDataSourceFactory(DataSourceFactory dataSourceFactory) {
+    this.database = dataSourceFactory;
+  }
+
+  @JsonProperty("viewRendererConfiguration")
+  public Map<String, Map<String, String>> getViewRendererConfiguration() {
+    return viewRendererConfiguration;
+  }
+
+  @JsonProperty("viewRendererConfiguration")
+  public void setViewRendererConfiguration(
+      Map<String, Map<String, String>> viewRendererConfiguration) {
+    final ImmutableMap.Builder<String, Map<String, String>> builder = ImmutableMap.builder();
+    for (Map.Entry<String, Map<String, String>> entry : viewRendererConfiguration.entrySet()) {
+      builder.put(entry.getKey(), ImmutableMap.copyOf(entry.getValue()));
     }
-
-    @JsonProperty
-    public void setTemplate(String template) {
-        this.template = template;
-    }
-
-    @JsonProperty
-    public String getDefaultName() {
-        return defaultName;
-    }
-
-    @JsonProperty
-    public void setDefaultName(String defaultName) {
-        this.defaultName = defaultName;
-    }
-
-    public Template buildTemplate() {
-        return new Template(template, defaultName);
-    }
-
-    @JsonProperty("database")
-    public DataSourceFactory getDataSourceFactory() {
-        return database;
-    }
-
-    @JsonProperty("database")
-    public void setDataSourceFactory(DataSourceFactory dataSourceFactory) {
-        this.database = dataSourceFactory;
-    }
-
-    @JsonProperty("viewRendererConfiguration")
-    public Map<String, Map<String, String>> getViewRendererConfiguration() {
-        return viewRendererConfiguration;
-    }
-
-    @JsonProperty("viewRendererConfiguration")
-    public void setViewRendererConfiguration(Map<String, Map<String, String>> viewRendererConfiguration) {
-        final ImmutableMap.Builder<String, Map<String, String>> builder = ImmutableMap.builder();
-        for (Map.Entry<String, Map<String, String>> entry : viewRendererConfiguration.entrySet()) {
-            builder.put(entry.getKey(), ImmutableMap.copyOf(entry.getValue()));
-        }
-        this.viewRendererConfiguration = builder.build();
-    }
+    this.viewRendererConfiguration = builder.build();
+  }
 }

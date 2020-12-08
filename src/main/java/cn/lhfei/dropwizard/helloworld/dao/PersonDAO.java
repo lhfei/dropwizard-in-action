@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
 import cn.lhfei.dropwizard.helloworld.core.Person;
 import io.dropwizard.hibernate.AbstractDAO;
@@ -46,6 +47,6 @@ public class PersonDAO extends AbstractDAO<Person> {
 	}
 
 	public List<Person> findAll() {
-		return list(namedQuery("cn.lhfei.dropwizard.helloworld.core.Person.findAll"));
+		return list((Query<Person>) namedQuery("cn.lhfei.dropwizard.helloworld.core.Person.findAll"));
 	}
 }
